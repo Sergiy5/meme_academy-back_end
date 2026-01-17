@@ -7,10 +7,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "outDir": "./dist",
+    "outDir": "./dist",//need add server folder
     "rootDir": "./src",
     "resolveJsonModule": true
   },
-  "include": ["src/server/**/*.ts", "src/index.ts"],
+  "include": ["src/**/*.ts", "src/index.ts"],
   "exclude": ["dist"]
 }
