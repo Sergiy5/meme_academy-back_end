@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "tsx src/server/index.ts",
     "server": "tsx src/server/index.ts",
-    "server:dev": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server:dev": "nodemon"
   },
   "repository": {
     "type": "git",
