@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsx src/server/index.ts",
-    "server": "tsx src/server/index.ts",
+    "build": "tsc",
+    "start": "node dist/server/index.js",
     "server:dev": "nodemon"
   },
   "repository": {
