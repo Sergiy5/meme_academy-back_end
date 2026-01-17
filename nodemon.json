@@ -2,5 +2,5 @@
   "watch": ["src/server"],
   "ext": "ts",
   "ignore": ["dist"],
-  "exec": "tsx src/index.ts"
+  "exec": "tsx src/server/index.ts"
 }

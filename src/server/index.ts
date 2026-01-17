@@ -1,13 +1,17 @@
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { GameRoomManager } from "./GameRoom";
+import { GameRoomManager } from "../GameRoom";
 
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: ["http://localhost:3000", "http://localhost:3001"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://meme-academy.vercel.app",
+    ],
     methods: ["GET", "POST"],
   },
 });

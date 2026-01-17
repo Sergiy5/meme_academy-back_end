@@ -2,11 +2,11 @@
   "name": "meme_academy-back_end",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
-    "server:dev": "nodemon"
+    "start": "node dist/server/index.js",
+    "dev": "nodemon"
   },
   "repository": {
     "type": "git",
