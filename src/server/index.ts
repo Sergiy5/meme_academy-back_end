@@ -1,7 +1,7 @@
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { GameRoomManager } from "../GameRoom";
+import { GameRoomManager } from "../gameRoom";
 
 const app = express();
 const httpServer = createServer(app);
@@ -57,6 +57,11 @@ io.on("connection", (socket) => {
   socket.on("start_game", () => {
     console.log("Starting game");
     roomManager.startGame(socket);
+  });
+
+  socket.on("select_phrase", ({ phraseId }: { phraseId: string }) => {
+    console.log("Selecting phrase:", phraseId);
+    roomManager.selectPhrase(socket, phraseId);
   });
 
   socket.on("submit_meme", ({ memeId }: { memeId: string }) => {

@@ -122,12 +122,20 @@ export const PHRASE_POOL: Phrase[] = [
   { id: 'p100', text: 'That one friend in every group chat' },
 ];
 
-export function getRandomPhrase(exclude: string[] = []): Phrase {
-  const available = PHRASE_POOL.filter(p => !exclude.includes(p.id));
-  const index = Math.floor(Math.random() * available.length);
-  return available[index];
-}
+// export function getRandomPhrase(exclude: string[] = []): Phrase {
+//   const available = PHRASE_POOL.filter(p => !exclude.includes(p.id));
+//   const index = Math.floor(Math.random() * available.length);
+//   return available[index];
+// }
 
+export function getRandomPhrases(
+  count: number,
+  exclude: string[] = [],
+): Phrase[] {
+  const available = PHRASE_POOL.filter((p) => !exclude.includes(p.id));
+  const shuffled = [...available].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
 export function getPhraseById(id: string): Phrase | undefined {
   return PHRASE_POOL.find(p => p.id === id);
 }
