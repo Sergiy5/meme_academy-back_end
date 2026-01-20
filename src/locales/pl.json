@@ -1,0 +1,22 @@
+{
+  "errors": {
+    "ROOM_NOT_FOUND": "Nie znaleziono pokoju",
+    "ROOM_FULL": "Pokój jest pełny (maksymalnie 10 graczy)",
+    "GAME_IN_PROGRESS": "Gra już się rozpoczęła",
+    "INVALID_NICKNAME": "Nick musi mieć od 2 do 20 znaków",
+    "NICKNAME_TAKEN": "Ten nick jest już zajęty",
+    "NOT_HOST": "Tylko host może rozpocząć grę",
+    "NOT_ENOUGH_PLAYERS": "Potrzeba minimum 3 graczy do rozpoczęcia",
+    "NOT_JUDGE": "Tylko sędzia może to zrobić",
+    "NOT_YOUR_TURN": "To nie twoja kolej",
+    "NOT_WINNER": "Tylko zwycięzca może rozpocząć następną rundę",
+    "INVALID_PHRASE": "Nieprawidłowy wybór frazy",
+    "INVALID_MEME": "Nieprawidłowy wybór mema",
+    "ALREADY_SUBMITTED": "Już wysłałeś mema",
+    "INVALID_SELECTION": "Nieprawidłowy wybór",
+    "CONNECTION_ERROR": "Wystąpił błąd połączenia",
+    "RECONNECT_FAILED": "Nie udało się ponownie połączyć z pokojem",
+    "PLAYER_NOT_FOUND": "Nie znaleziono gracza w pokoju",
+    "JUDGE_CANNOT_SUBMIT": "Sędzia nie może wysyłać memów"
+  }
+}
