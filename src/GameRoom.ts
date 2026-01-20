@@ -14,7 +14,8 @@ import {
   getRandomAvatarColor,
 } from "./constants";
 import { getRandomMemes } from "./content/memes";
-import { getRandomPhrases, getPhraseById } from "./content/phrases";
+import { getRandomPhrases } from "./content/phrases/index";
+import { Locale, getErrorMessage, normalizeLocale } from "./i18n";
 
 export class GameRoomManager {
   private rooms: Map<string, ServerRoom> = new Map();
@@ -26,9 +27,10 @@ export class GameRoomManager {
     this.io = io;
   }
 
-  createRoom(socket: Socket, nickname: string): void {
+  createRoom(socket: Socket, nickname: string, locale: string = "en"): void {
     const roomCode = generateRoomCode();
     const playerId = generatePlayerId();
+    const normalizedLocale = normalizeLocale(locale);
 
     const player: ServerPlayer = {
       id: playerId,
@@ -39,6 +41,7 @@ export class GameRoomManager {
       isHost: true,
       socketId: socket.id,
       hand: [],
+      locale: normalizedLocale,
     };
 
     const room: ServerRoom = {
@@ -61,21 +64,22 @@ export class GameRoomManager {
     socket.emit("room_state", { state: toPublicState(room) });
   }
 
-  joinRoom(socket: Socket, roomCode: string, nickname: string): void {
+  joinRoom(socket: Socket, roomCode: string, nickname: string, locale: string = "en"): void {
+    const normalizedLocale = normalizeLocale(locale);
     const room = this.rooms.get(roomCode.toUpperCase());
 
     if (!room) {
-      socket.emit("error", { message: "Room not found" });
+      socket.emit("error", { message: getErrorMessage("ROOM_NOT_FOUND", normalizedLocale) });
       return;
     }
 
     if (room.phase !== "lobby") {
-      socket.emit("error", { message: "Game already in progress" });
+      socket.emit("error", { message: getErrorMessage("GAME_IN_PROGRESS", normalizedLocale) });
       return;
     }
 
     if (room.players.size >= GAME_SETTINGS.maxPlayers) {
-      socket.emit("error", { message: "Room is full" });
+      socket.emit("error", { message: getErrorMessage("ROOM_FULL", normalizedLocale) });
       return;
     }
 
@@ -90,6 +94,7 @@ export class GameRoomManager {
       isHost: false,
       socketId: socket.id,
       hand: [],
+      locale: normalizedLocale,
     };
 
     room.players.set(playerId, player);
@@ -113,24 +118,28 @@ export class GameRoomManager {
     });
   }
 
-  reconnect(socket: Socket, playerId: string, roomCode: string): void {
+  reconnect(socket: Socket, playerId: string, roomCode: string, locale?: string): void {
+    const normalizedLocale = normalizeLocale(locale);
     const room = this.rooms.get(roomCode.toUpperCase());
 
     if (!room) {
-      socket.emit("error", { message: "Room not found" });
+      socket.emit("error", { message: getErrorMessage("ROOM_NOT_FOUND", normalizedLocale) });
       return;
     }
 
     const player = room.players.get(playerId);
 
     if (!player) {
-      socket.emit("error", { message: "Player not found in room" });
+      socket.emit("error", { message: getErrorMessage("PLAYER_NOT_FOUND", normalizedLocale) });
       return;
     }
 
-    // Update socket mapping
+    // Update socket mapping and locale if provided
     player.socketId = socket.id;
     player.isConnected = true;
+    if (locale) {
+      player.locale = normalizedLocale;
+    }
     this.socketToPlayer.set(socket.id, { roomCode: room.code, playerId });
 
     socket.join(room.code);
@@ -146,6 +155,31 @@ export class GameRoomManager {
     this.io.to(room.code).emit("player_reconnected", { playerId });
   }
 
+  changeLocale(socket: Socket, locale: string): void {
+    const info = this.socketToPlayer.get(socket.id);
+    if (!info) return;
+
+    const room = this.rooms.get(info.roomCode);
+    if (!room) return;
+
+    const player = room.players.get(info.playerId);
+    if (!player) return;
+
+    player.locale = normalizeLocale(locale);
+    socket.emit("locale_changed", { locale: player.locale });
+  }
+
+  private getPlayerLocale(socket: Socket): Locale {
+    const info = this.socketToPlayer.get(socket.id);
+    if (!info) return "en";
+
+    const room = this.rooms.get(info.roomCode);
+    if (!room) return "en";
+
+    const player = room.players.get(info.playerId);
+    return player?.locale || "en";
+  }
+
   startGame(socket: Socket): void {
     const info = this.socketToPlayer.get(socket.id);
     if (!info) return;
@@ -154,14 +188,16 @@ export class GameRoomManager {
     if (!room) return;
 
     const player = room.players.get(info.playerId);
+    const locale = this.getPlayerLocale(socket);
+
     if (!player?.isHost) {
-      socket.emit("error", { message: "Only the host can start the game" });
+      socket.emit("error", { message: getErrorMessage("NOT_HOST", locale) });
       return;
     }
 
     if (room.players.size < GAME_SETTINGS.minPlayers) {
       socket.emit("error", {
-        message: `Need at least ${GAME_SETTINGS.minPlayers} players`,
+        message: getErrorMessage("NOT_ENOUGH_PLAYERS", locale),
       });
       return;
     }
@@ -197,8 +233,9 @@ export class GameRoomManager {
       return;
 
     // Only judge can select phrase
+    const locale = this.getPlayerLocale(socket);
     if (info.playerId !== room.currentRound.judgeId) {
-      socket.emit("error", { message: "Only the judge can select a phrase" });
+      socket.emit("error", { message: getErrorMessage("NOT_JUDGE", locale) });
       return;
     }
 
@@ -207,7 +244,7 @@ export class GameRoomManager {
       (p) => p.id === phraseId,
     );
     if (!selectedPhrase) {
-      socket.emit("error", { message: "Invalid phrase selection" });
+      socket.emit("error", { message: getErrorMessage("INVALID_PHRASE", locale) });
       return;
     }
 
@@ -231,22 +268,24 @@ export class GameRoomManager {
     const player = room.players.get(info.playerId);
     if (!player || !room.currentRound) return;
 
+    const locale = this.getPlayerLocale(socket);
+
     // Judge cannot submit
     if (info.playerId === room.currentRound.judgeId) {
-      socket.emit("error", { message: "Judge cannot submit memes" });
+      socket.emit("error", { message: getErrorMessage("JUDGE_CANNOT_SUBMIT", locale) });
       return;
     }
 
     // Check if already submitted
     if (room.currentRound.submissions.has(info.playerId)) {
-      socket.emit("error", { message: "Already submitted" });
+      socket.emit("error", { message: getErrorMessage("ALREADY_SUBMITTED", locale) });
       return;
     }
 
     // Find meme in player's hand
     const meme = player.hand.find((m) => m.id === memeId);
     if (!meme) {
-      socket.emit("error", { message: "Meme not in your hand" });
+      socket.emit("error", { message: getErrorMessage("INVALID_MEME", locale) });
       return;
     }
 
@@ -286,8 +325,10 @@ export class GameRoomManager {
     const room = this.rooms.get(info.roomCode);
     if (!room || room.phase !== "judging") return;
 
+    const locale = this.getPlayerLocale(socket);
+
     if (!room.currentRound || info.playerId !== room.currentRound.judgeId) {
-      socket.emit("error", { message: "Only the judge can select a winner" });
+      socket.emit("error", { message: getErrorMessage("NOT_JUDGE", locale) });
       return;
     }
 
@@ -299,7 +340,7 @@ export class GameRoomManager {
       orderIndex < 0 ||
       orderIndex >= room.currentRound.shuffledSubmissionOrder.length
     ) {
-      socket.emit("error", { message: "Invalid selection" });
+      socket.emit("error", { message: getErrorMessage("INVALID_SELECTION", locale) });
       return;
     }
 
@@ -308,7 +349,7 @@ export class GameRoomManager {
     const winningSubmission = room.currentRound.submissions.get(winnerId);
 
     if (!winnerId || !winningSubmission) {
-      socket.emit("error", { message: "Invalid selection" });
+      socket.emit("error", { message: getErrorMessage("INVALID_SELECTION", locale) });
       return;
     }
 
@@ -338,8 +379,9 @@ export class GameRoomManager {
 
     // Only winner (next judge) can start next round
     if (info.playerId !== winnerId) {
+      const locale = this.getPlayerLocale(socket);
       socket.emit("error", {
-        message: "Only the winner can start the next round",
+        message: getErrorMessage("NOT_WINNER", locale),
       });
       return;
     }
@@ -439,7 +481,10 @@ export class GameRoomManager {
   }
 
   private createRound(room: ServerRoom, judgeId: PlayerId): ServerRoundState {
-    const phraseOptions = getRandomPhrases(3, room.usedPhraseIds);
+    // Get phrases in judge's language
+    const judge = room.players.get(judgeId);
+    const judgeLocale = judge?.locale || "en";
+    const phraseOptions = getRandomPhrases(3, room.usedPhraseIds, judgeLocale);
 
     return {
       roundNumber: (room.currentRound?.roundNumber ?? 0) + 1,

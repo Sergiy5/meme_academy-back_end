@@ -33,26 +33,50 @@ app.get("/room/:code", (req, res) => {
 io.on("connection", (socket) => {
   console.log("Client connected:", socket.id);
 
-  socket.on("create_room", ({ nickname }: { nickname: string }) => {
-    console.log("Creating room for:", nickname);
-    roomManager.createRoom(socket, nickname);
-  });
+  socket.on(
+    "create_room",
+    ({ nickname, locale }: { nickname: string; locale?: string }) => {
+      console.log("Creating room for:", nickname, "locale:", locale);
+      roomManager.createRoom(socket, nickname, locale);
+    },
+  );
 
   socket.on(
     "join_room",
-    ({ roomCode, nickname }: { roomCode: string; nickname: string }) => {
-      console.log("Joining room:", roomCode, "as", nickname);
-      roomManager.joinRoom(socket, roomCode, nickname);
+    ({
+      roomCode,
+      nickname,
+      locale,
+    }: {
+      roomCode: string;
+      nickname: string;
+      locale?: string;
+    }) => {
+      console.log("Joining room:", roomCode, "as", nickname, "locale:", locale);
+      roomManager.joinRoom(socket, roomCode, nickname, locale);
     },
   );
 
   socket.on(
     "reconnect_room",
-    ({ playerId, roomCode }: { playerId: string; roomCode: string }) => {
-      console.log("Reconnecting:", playerId, "to", roomCode);
-      roomManager.reconnect(socket, playerId, roomCode);
+    ({
+      playerId,
+      roomCode,
+      locale,
+    }: {
+      playerId: string;
+      roomCode: string;
+      locale?: string;
+    }) => {
+      console.log("Reconnecting:", playerId, "to", roomCode, "locale:", locale);
+      roomManager.reconnect(socket, playerId, roomCode, locale);
     },
   );
+
+  socket.on("change_locale", ({ locale }: { locale: string }) => {
+    console.log("Changing locale to:", locale);
+    roomManager.changeLocale(socket, locale);
+  });
 
   socket.on("start_game", () => {
     console.log("Starting game");

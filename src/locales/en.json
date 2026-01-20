@@ -1,0 +1,22 @@
+{
+  "errors": {
+    "ROOM_NOT_FOUND": "Room not found",
+    "ROOM_FULL": "Room is full (max 10 players)",
+    "GAME_IN_PROGRESS": "Game has already started",
+    "INVALID_NICKNAME": "Nickname must be 2-20 characters",
+    "NICKNAME_TAKEN": "This nickname is already taken",
+    "NOT_HOST": "Only the host can start the game",
+    "NOT_ENOUGH_PLAYERS": "Need at least 3 players to start",
+    "NOT_JUDGE": "Only the judge can do this",
+    "NOT_YOUR_TURN": "It's not your turn",
+    "NOT_WINNER": "Only the winner can start next round",
+    "INVALID_PHRASE": "Invalid phrase selection",
+    "INVALID_MEME": "Invalid meme selection",
+    "ALREADY_SUBMITTED": "You already submitted a meme",
+    "INVALID_SELECTION": "Invalid selection",
+    "CONNECTION_ERROR": "Connection error occurred",
+    "RECONNECT_FAILED": "Could not reconnect to room",
+    "PLAYER_NOT_FOUND": "Player not found in room",
+    "JUDGE_CANNOT_SUBMIT": "Judge cannot submit memes"
+  }
+}

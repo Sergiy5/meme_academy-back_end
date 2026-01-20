@@ -1,4 +1,4 @@
-// import { MemeCard, Phrase, Player, PlayerId, RoomCode, GamePhase, Submission } from '../lib/game/types';
+import { Locale } from "./i18n";
 
 // ============ ROOM & PLAYER TYPES ============
 
@@ -13,6 +13,7 @@ export interface Player {
   score: number;
   isConnected: boolean;
   isHost: boolean;
+  locale: Locale;
 }
 
 // ============ GAME STATE TYPES ============
@@ -163,6 +164,7 @@ export function toPublicState(room: ServerRoom): RoomPublicState {
     score: p.score,
     isConnected: p.isConnected,
     isHost: p.isHost,
+    locale: p.locale,
   }));
 
   let currentRound = null;

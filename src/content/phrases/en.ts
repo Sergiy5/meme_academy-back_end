@@ -1,0 +1,123 @@
+import { Phrase } from "../../types";
+
+export const PHRASE_POOL_EN: Phrase[] = [
+  // Everyday Life
+  { id: "en-001", text: "When you realize it's Monday tomorrow" },
+  { id: "en-002", text: "Me trying to adult" },
+  { id: "en-003", text: "When the WiFi goes down" },
+  { id: "en-004", text: "My brain at 3 AM" },
+  { id: "en-005", text: 'When someone says "we need to talk"' },
+  { id: "en-006", text: "Checking my bank account after the weekend" },
+  { id: "en-007", text: "When you finally get home after a long day" },
+  { id: "en-008", text: "Me on payday vs me a week later" },
+  { id: "en-009", text: "When you remember that embarrassing thing from 10 years ago" },
+  { id: "en-010", text: "Waking up before your alarm goes off" },
+
+  // School & Work
+  { id: "en-011", text: 'When the teacher says "group project"' },
+  { id: "en-012", text: "Submitting an assignment 1 minute before deadline" },
+  { id: "en-013", text: "When you realize there was homework" },
+  { id: "en-014", text: "My face during Monday morning meetings" },
+  { id: "en-015", text: "When your boss says \"let's have a quick chat\"" },
+  { id: "en-016", text: "Pretending to work when the boss walks by" },
+  { id: "en-017", text: "When someone replies-all to a company email" },
+  { id: "en-018", text: "Explaining my job to my parents" },
+  { id: "en-019", text: "When you've been on hold for 45 minutes" },
+  { id: "en-020", text: "Reading an email I just sent and finding a typo" },
+
+  // Food
+  { id: "en-021", text: "When someone touches my food" },
+  { id: "en-022", text: "Deciding what to eat for dinner" },
+  { id: "en-023", text: "Me at the all-you-can-eat buffet" },
+  { id: "en-024", text: "When your food arrives at a restaurant" },
+  { id: "en-025", text: "Ordering dessert when you're already full" },
+  { id: "en-026", text: "When someone finishes your snacks" },
+  { id: "en-027", text: "Making instant noodles at 2 AM" },
+  { id: "en-028", text: "Waiting for the microwave to hit 0:00" },
+  { id: "en-029", text: "When pizza arrives" },
+  { id: "en-030", text: "My diet every Monday vs Friday" },
+
+  // Technology
+  { id: "en-031", text: "When your phone is at 1%" },
+  { id: "en-032", text: "Me after accidentally liking a 3-year-old photo" },
+  { id: "en-033", text: "When the app crashes and you lose your progress" },
+  { id: "en-034", text: "Reading terms and conditions" },
+  { id: "en-035", text: 'When the website says "password incorrect"' },
+  { id: "en-036", text: "Waiting for a page to load on slow internet" },
+  { id: "en-037", text: "When you see a software update notification" },
+  { id: "en-038", text: "Finding a charger when your phone is dying" },
+  { id: "en-039", text: "When autocorrect ruins your message" },
+  { id: "en-040", text: "Explaining technology to grandparents" },
+
+  // Social Situations
+  { id: "en-041", text: "When you wave back at someone who wasn't waving at you" },
+  { id: "en-042", text: "Pretending to text to avoid small talk" },
+  { id: "en-043", text: "When you forget someone's name mid-conversation" },
+  { id: "en-044", text: 'Saying "you too" when the waiter says enjoy your meal' },
+  { id: "en-045", text: "When plans get cancelled" },
+  { id: "en-046", text: "Me at parties vs me at home" },
+  { id: "en-047", text: "When someone stands too close to you" },
+  { id: "en-048", text: "Trying to leave a conversation politely" },
+  { id: "en-049", text: 'When someone says "guess what"' },
+  { id: "en-050", text: "Laughing at a joke you didn't hear" },
+
+  // Family
+  { id: "en-051", text: "When your mom calls your full name" },
+  { id: "en-052", text: "Relatives asking about your relationship status" },
+  { id: "en-053", text: "When dad says he'll be right back and disappears for hours" },
+  { id: "en-054", text: "Family group chat energy" },
+  { id: "en-055", text: "When someone touches the thermostat" },
+  { id: "en-056", text: "Being the family tech support" },
+  { id: "en-057", text: "When your sibling gets in trouble" },
+  { id: "en-058", text: "Getting life advice at family dinners" },
+  { id: "en-059", text: 'When you hear "we have food at home"' },
+  { id: "en-060", text: "Hiding in your room when guests arrive" },
+
+  // Internet Culture
+  { id: "en-061", text: "Reading the comments section" },
+  { id: "en-062", text: "When someone doesn't get the meme reference" },
+  { id: "en-063", text: "Me explaining internet drama to friends" },
+  { id: "en-064", text: "When you find a new song and play it 100 times" },
+  { id: "en-065", text: "Going down a Wikipedia rabbit hole at midnight" },
+  { id: "en-066", text: "When someone spoils a show" },
+  { id: "en-067", text: "Me during a video game boss fight" },
+  { id: "en-068", text: "Refreshing the page waiting for something" },
+  { id: "en-069", text: "When your favorite creator uploads" },
+  { id: "en-070", text: "Closing all 50 browser tabs at once" },
+
+  // Awkward Moments
+  { id: "en-071", text: "Holding the door for someone too far away" },
+  { id: "en-072", text: "When you and a stranger do the hallway dance" },
+  { id: "en-073", text: "Accidentally making eye contact with a stranger" },
+  { id: "en-074", text: "When your stomach growls in a quiet room" },
+  { id: "en-075", text: "Pulling a push door" },
+  { id: "en-076", text: "When you trip but try to play it cool" },
+  { id: "en-077", text: "Waiting for someone to finish so you can leave" },
+  { id: "en-078", text: 'When the cashier says "next in line" and it\'s you' },
+  { id: "en-079", text: "Walking in the wrong direction and turning around" },
+  { id: "en-080", text: "When you mishear someone for the third time" },
+
+  // Emotions & Thoughts
+  { id: "en-081", text: "My last brain cell" },
+  { id: "en-082", text: "When motivation finally hits" },
+  { id: "en-083", text: "Me pretending everything is fine" },
+  { id: "en-084", text: "My inner critic" },
+  { id: "en-085", text: "When you're too tired to sleep" },
+  { id: "en-086", text: "My anxiety before making a phone call" },
+  { id: "en-087", text: "Finally understanding something after years" },
+  { id: "en-088", text: "When you perfectly predict what happens next" },
+  { id: "en-089", text: "Overthinking a simple decision" },
+  { id: "en-090", text: "My confidence before vs during a presentation" },
+
+  // Miscellaneous Fun
+  { id: "en-091", text: "When you find money in your pocket" },
+  { id: "en-092", text: "Pet owners at 3 AM" },
+  { id: "en-093", text: "When the weather app was wrong" },
+  { id: "en-094", text: "Trying something new for the first time" },
+  { id: "en-095", text: "When you realize the weekend is almost over" },
+  { id: "en-096", text: "How I think I look vs how I actually look" },
+  { id: "en-097", text: 'When someone says "calm down"' },
+  { id: "en-098", text: "Finding out there's no more episodes" },
+  { id: "en-099", text: "When you finally beat a hard level" },
+  { id: "en-100", text: "That one friend in every group chat" },
+];

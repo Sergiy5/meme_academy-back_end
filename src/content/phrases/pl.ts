@@ -1,0 +1,123 @@
+import { Phrase } from "../../types";
+
+export const PHRASE_POOL_PL: Phrase[] = [
+  // Codzienne życie
+  { id: "pl-001", text: "Kiedy zdajesz sobie sprawę, że jutro poniedziałek" },
+  { id: "pl-002", text: "Ja próbując być dorosłym" },
+  { id: "pl-003", text: "Kiedy WiFi przestaje działać" },
+  { id: "pl-004", text: "Mój mózg o 3 w nocy" },
+  { id: "pl-005", text: "Kiedy ktoś mówi \"musimy porozmawiać\"" },
+  { id: "pl-006", text: "Sprawdzam konto bankowe po weekendzie" },
+  { id: "pl-007", text: "Kiedy w końcu wracasz do domu po ciężkim dniu" },
+  { id: "pl-008", text: "Ja w dniu wypłaty vs ja tydzień później" },
+  { id: "pl-009", text: "Kiedy przypominasz sobie żenującą sytuację sprzed 10 lat" },
+  { id: "pl-010", text: "Budzisz się przed budzikiem" },
+
+  // Szkoła i praca
+  { id: "pl-011", text: "Kiedy nauczyciel mówi \"projekt grupowy\"" },
+  { id: "pl-012", text: "Oddaję zadanie minutę przed terminem" },
+  { id: "pl-013", text: "Kiedy uświadamiasz sobie, że była praca domowa" },
+  { id: "pl-014", text: "Moja twarz na poniedziałkowych porannych spotkaniach" },
+  { id: "pl-015", text: "Kiedy szef mówi \"pogadajmy szybko\"" },
+  { id: "pl-016", text: "Udaję, że pracuję, gdy przechodzi szef" },
+  { id: "pl-017", text: "Kiedy ktoś odpowiada wszystkim na firmowego maila" },
+  { id: "pl-018", text: "Tłumaczę rodzicom, czym się zajmuję w pracy" },
+  { id: "pl-019", text: "Kiedy czekasz na linii 45 minut" },
+  { id: "pl-020", text: "Czytam wysłany email i znajduję literówkę" },
+
+  // Jedzenie
+  { id: "pl-021", text: "Kiedy ktoś dotyka mojego jedzenia" },
+  { id: "pl-022", text: "Decyduję, co zjeść na kolację" },
+  { id: "pl-023", text: "Ja na bufecie all-you-can-eat" },
+  { id: "pl-024", text: "Kiedy przynoszą jedzenie w restauracji" },
+  { id: "pl-025", text: "Zamawiam deser, gdy już jestem najedzony" },
+  { id: "pl-026", text: "Kiedy ktoś zjada twoje przekąski" },
+  { id: "pl-027", text: "Robię zupkę instant o 2 w nocy" },
+  { id: "pl-028", text: "Czekam, aż mikrofalówka dojdzie do 0:00" },
+  { id: "pl-029", text: "Kiedy przyjeżdża pizza" },
+  { id: "pl-030", text: "Moja dieta w poniedziałek vs w piątek" },
+
+  // Technologia
+  { id: "pl-031", text: "Kiedy telefon ma 1% baterii" },
+  { id: "pl-032", text: "Ja po przypadkowym polajkowaniu zdjęcia sprzed 3 lat" },
+  { id: "pl-033", text: "Kiedy aplikacja się crashuje i tracisz postęp" },
+  { id: "pl-034", text: "Czytam regulamin" },
+  { id: "pl-035", text: "Kiedy strona mówi \"nieprawidłowe hasło\"" },
+  { id: "pl-036", text: "Czekam, aż strona się załaduje na wolnym internecie" },
+  { id: "pl-037", text: "Kiedy widzisz powiadomienie o aktualizacji" },
+  { id: "pl-038", text: "Znajduję ładowarkę, gdy telefon umiera" },
+  { id: "pl-039", text: "Kiedy autokorekta psuje wiadomość" },
+  { id: "pl-040", text: "Tłumaczę technologię dziadkom" },
+
+  // Sytuacje społeczne
+  { id: "pl-041", text: "Kiedy machasz do kogoś, kto nie machał do ciebie" },
+  { id: "pl-042", text: "Udaję, że piszę SMS, żeby uniknąć rozmowy" },
+  { id: "pl-043", text: "Kiedy zapominasz czyjeś imię w środku rozmowy" },
+  { id: "pl-044", text: "Mówię \"nawzajem\" kelnerowi, który życzył smacznego" },
+  { id: "pl-045", text: "Kiedy plany zostają odwołane" },
+  { id: "pl-046", text: "Ja na imprezie vs ja w domu" },
+  { id: "pl-047", text: "Kiedy ktoś stoi zbyt blisko" },
+  { id: "pl-048", text: "Próbuję grzecznie zakończyć rozmowę" },
+  { id: "pl-049", text: "Kiedy ktoś mówi \"zgadnij co\"" },
+  { id: "pl-050", text: "Śmieję się z żartu, którego nie słyszałem" },
+
+  // Rodzina
+  { id: "pl-051", text: "Kiedy mama woła cię pełnym imieniem" },
+  { id: "pl-052", text: "Krewni pytają o twoje życie uczuciowe" },
+  { id: "pl-053", text: "Kiedy tata mówi, że zaraz wraca i znika na godziny" },
+  { id: "pl-054", text: "Energia rodzinnego czatu grupowego" },
+  { id: "pl-055", text: "Kiedy ktoś dotyka termostatu" },
+  { id: "pl-056", text: "Bycie rodzinnym wsparciem technicznym" },
+  { id: "pl-057", text: "Kiedy brat lub siostra wpada w kłopoty" },
+  { id: "pl-058", text: "Dostaję rady życiowe na rodzinnych obiadach" },
+  { id: "pl-059", text: "Kiedy słyszysz \"mamy jedzenie w domu\"" },
+  { id: "pl-060", text: "Chowam się w pokoju, gdy przychodzą goście" },
+
+  // Kultura internetowa
+  { id: "pl-061", text: "Czytam sekcję komentarzy" },
+  { id: "pl-062", text: "Kiedy ktoś nie rozumie mema" },
+  { id: "pl-063", text: "Tłumaczę internetową dramę znajomym" },
+  { id: "pl-064", text: "Kiedy znajdujesz nową piosenkę i słuchasz jej 100 razy" },
+  { id: "pl-065", text: "Wpadasz w króliczą norę Wikipedii o północy" },
+  { id: "pl-066", text: "Kiedy ktoś spoileruje serial" },
+  { id: "pl-067", text: "Ja podczas walki z bossem w grze" },
+  { id: "pl-068", text: "Odświeżam stronę czekając na coś" },
+  { id: "pl-069", text: "Kiedy ulubiony twórca wrzuca film" },
+  { id: "pl-070", text: "Zamykam wszystkie 50 kart przeglądarki naraz" },
+
+  // Niezręczne momenty
+  { id: "pl-071", text: "Trzymam drzwi dla kogoś, kto jest zbyt daleko" },
+  { id: "pl-072", text: "Kiedy ty i nieznajomy tańczycie w korytarzu" },
+  { id: "pl-073", text: "Przypadkowo spotykam wzrok nieznajomego" },
+  { id: "pl-074", text: "Kiedy brzuch burczy w cichym pokoju" },
+  { id: "pl-075", text: "Ciągnę drzwi, które trzeba pchać" },
+  { id: "pl-076", text: "Kiedy się potykasz, ale udajesz, że wszystko OK" },
+  { id: "pl-077", text: "Czekam, aż ktoś skończy, żebym mógł wyjść" },
+  { id: "pl-078", text: "Kiedy kasjer mówi \"następny\" i to ty" },
+  { id: "pl-079", text: "Idziesz w złym kierunku i zawracasz" },
+  { id: "pl-080", text: "Kiedy prosisz o powtórzenie trzeci raz" },
+
+  // Emocje i myśli
+  { id: "pl-081", text: "Moja ostatnia komórka mózgowa" },
+  { id: "pl-082", text: "Kiedy w końcu pojawia się motywacja" },
+  { id: "pl-083", text: "Ja udając, że wszystko jest OK" },
+  { id: "pl-084", text: "Mój wewnętrzny krytyk" },
+  { id: "pl-085", text: "Kiedy jesteś zbyt zmęczony, żeby spać" },
+  { id: "pl-086", text: "Mój lęk przed telefonem" },
+  { id: "pl-087", text: "W końcu rozumiem coś po latach" },
+  { id: "pl-088", text: "Kiedy idealnie przewidujesz, co się stanie" },
+  { id: "pl-089", text: "Za dużo myślę nad prostą decyzją" },
+  { id: "pl-090", text: "Moja pewność siebie przed vs podczas prezentacji" },
+
+  // Różne
+  { id: "pl-091", text: "Kiedy znajdujesz pieniądze w kieszeni" },
+  { id: "pl-092", text: "Właściciele zwierząt o 3 w nocy" },
+  { id: "pl-093", text: "Kiedy aplikacja pogodowa się myliła" },
+  { id: "pl-094", text: "Próbuję czegoś nowego po raz pierwszy" },
+  { id: "pl-095", text: "Kiedy uświadamiasz sobie, że weekend prawie się skończył" },
+  { id: "pl-096", text: "Jak myślę, że wyglądam vs jak wyglądam naprawdę" },
+  { id: "pl-097", text: "Kiedy ktoś mówi \"uspokój się\"" },
+  { id: "pl-098", text: "Dowiaduję się, że nie ma więcej odcinków" },
+  { id: "pl-099", text: "Kiedy w końcu przechodzisz trudny poziom" },
+  { id: "pl-100", text: "Ten jeden znajomy w każdym grupowym czacie" },
+];
