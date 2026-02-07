@@ -10,6 +10,7 @@ export interface Player {
   id: PlayerId;
   nickname: string;
   avatarColor: string;
+  avatarId: number | null;
   score: number;
   isConnected: boolean;
   isHost: boolean;
@@ -161,6 +162,7 @@ export function toPublicState(room: ServerRoom): RoomPublicState {
     id: p.id,
     nickname: p.nickname,
     avatarColor: p.avatarColor,
+    avatarId: p.avatarId,
     score: p.score,
     isConnected: p.isConnected,
     isHost: p.isHost,
