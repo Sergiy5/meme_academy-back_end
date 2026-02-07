@@ -5,6 +5,7 @@
     "GAME_IN_PROGRESS": "Gra już się rozpoczęła",
     "INVALID_NICKNAME": "Nick musi mieć od 2 do 20 znaków",
     "NICKNAME_TAKEN": "Ten nick jest już zajęty",
+    "AVATAR_COMBO_TAKEN": "Ta kombinacja awatara i koloru tła jest już zajęta",
     "NOT_HOST": "Tylko host może rozpocząć grę",
     "NOT_ENOUGH_PLAYERS": "Potrzeba minimum 3 graczy do rozpoczęcia",
     "NOT_JUDGE": "Tylko sędzia może to zrobić",

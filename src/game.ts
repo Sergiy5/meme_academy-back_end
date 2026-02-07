@@ -27,7 +27,7 @@ export class GameRoomManager {
     this.io = io;
   }
 
-  createRoom(socket: Socket, nickname: string, locale: string = "en"): void {
+  createRoom(socket: Socket, nickname: string, locale: string = "en", avatarId?: number | null, bgColor?: string | null): void {
     const roomCode = generateRoomCode();
     const playerId = generatePlayerId();
     const normalizedLocale = normalizeLocale(locale);
@@ -35,7 +35,8 @@ export class GameRoomManager {
     const player: ServerPlayer = {
       id: playerId,
       nickname,
-      avatarColor: getRandomAvatarColor(),
+      avatarColor: bgColor || getRandomAvatarColor(),
+      avatarId: avatarId ?? null,
       score: 0,
       isConnected: true,
       isHost: true,
@@ -64,7 +65,7 @@ export class GameRoomManager {
     socket.emit("room_state", { state: toPublicState(room) });
   }
 
-  joinRoom(socket: Socket, roomCode: string, nickname: string, locale: string = "en"): void {
+  joinRoom(socket: Socket, roomCode: string, nickname: string, locale: string = "en", avatarId?: number | null, bgColor?: string | null): void {
     const normalizedLocale = normalizeLocale(locale);
     const room = this.rooms.get(roomCode.toUpperCase());
 
@@ -83,12 +84,35 @@ export class GameRoomManager {
       return;
     }
 
+    // Check nickname uniqueness (case-insensitive)
+    const nicknameTaken = Array.from(room.players.values()).some(
+      p => p.nickname.toLowerCase() === nickname.toLowerCase()
+    );
+    if (nicknameTaken) {
+      socket.emit("error", { message: getErrorMessage("NICKNAME_TAKEN", normalizedLocale) });
+      return;
+    }
+
+    // Check avatar + bgColor combo uniqueness
+    const resolvedAvatarId = avatarId ?? null;
+    const resolvedColor = bgColor || null;
+    if (resolvedAvatarId !== null && resolvedColor !== null) {
+      const comboTaken = Array.from(room.players.values()).some(
+        p => p.avatarId === resolvedAvatarId && p.avatarColor === resolvedColor
+      );
+      if (comboTaken) {
+        socket.emit("error", { message: getErrorMessage("AVATAR_COMBO_TAKEN", normalizedLocale) });
+        return;
+      }
+    }
+
     const playerId = generatePlayerId();
 
     const player: ServerPlayer = {
       id: playerId,
       nickname,
-      avatarColor: getRandomAvatarColor(),
+      avatarColor: bgColor || getRandomAvatarColor(),
+      avatarId: resolvedAvatarId,
       score: 0,
       isConnected: true,
       isHost: false,
@@ -111,6 +135,7 @@ export class GameRoomManager {
         id: player.id,
         nickname: player.nickname,
         avatarColor: player.avatarColor,
+        avatarId: player.avatarId,
         score: player.score,
         isConnected: player.isConnected,
         isHost: player.isHost,

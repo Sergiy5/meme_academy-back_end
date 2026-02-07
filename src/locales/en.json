@@ -5,6 +5,7 @@
     "GAME_IN_PROGRESS": "Game has already started",
     "INVALID_NICKNAME": "Nickname must be 2-20 characters",
     "NICKNAME_TAKEN": "This nickname is already taken",
+    "AVATAR_COMBO_TAKEN": "This avatar and background color combo is already taken",
     "NOT_HOST": "Only the host can start the game",
     "NOT_ENOUGH_PLAYERS": "Need at least 3 players to start",
     "NOT_JUDGE": "Only the judge can do this",

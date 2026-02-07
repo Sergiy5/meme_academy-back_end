@@ -35,9 +35,9 @@ io.on("connection", (socket) => {
 
   socket.on(
     "create_room",
-    ({ nickname, locale }: { nickname: string; locale?: string }) => {
+    ({ nickname, locale, avatarId, bgColor }: { nickname: string; locale?: string; avatarId?: number | null; bgColor?: string | null }) => {
       console.log("Creating room for:", nickname, "locale:", locale);
-      roomManager.createRoom(socket, nickname, locale);
+      roomManager.createRoom(socket, nickname, locale, avatarId, bgColor);
     },
   );
 
@@ -47,13 +47,17 @@ io.on("connection", (socket) => {
       roomCode,
       nickname,
       locale,
+      avatarId,
+      bgColor,
     }: {
       roomCode: string;
       nickname: string;
       locale?: string;
+      avatarId?: number | null;
+      bgColor?: string | null;
     }) => {
       console.log("Joining room:", roomCode, "as", nickname, "locale:", locale);
-      roomManager.joinRoom(socket, roomCode, nickname, locale);
+      roomManager.joinRoom(socket, roomCode, nickname, locale, avatarId, bgColor);
     },
   );
 
